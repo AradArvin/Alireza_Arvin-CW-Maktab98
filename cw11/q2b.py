@@ -12,7 +12,7 @@ arg = parser.parse_args()
 target_dir = os.listdir(arg.path)
 
 if arg.long:
-    for entry in os.listdir(arg.size):
+    for entry in os.listdir(arg.path):
         if os.path.isfile(entry):
             target_size = os.path.getsize(entry)
             print(f"{entry}, Size: {target_size} KB")

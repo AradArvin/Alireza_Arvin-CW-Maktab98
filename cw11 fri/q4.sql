@@ -16,3 +16,8 @@ ORDER BY address_count DESC LIMIT 3;
 -- Part4
 SELECT district FROM address
 WHERE district LIKE 'California' OR district LIKE 'Alberta';
+
+-- Part5
+SELECT address FROM address
+WHERE district LIKE 'California' OR district LIKE 'Alberta'
+OR district LIKE 'Texas' OR district LIKE 'Hamilton';

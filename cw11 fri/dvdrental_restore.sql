@@ -6,12 +6,22 @@ WHERE rental_duration > 4;
 SELECT * FROM film 
 WHERE 2 < rental_duration AND rental_duration < 5;
 
--- part 3 ascending
+-- part 3 order by title ascending
 SELECT * FROM film 
 WHERE 2 < rental_duration AND rental_duration < 5
 ORDER BY title ASC;
 
--- part 3 descending
+-- part 3 order by title descending
 SELECT * FROM film 
 WHERE 2 < rental_duration AND rental_duration < 5
 ORDER BY title DESC;
+
+-- part 3 order by rental_duration ascending
+SELECT * FROM film 
+WHERE 2 < rental_duration AND rental_duration < 5
+ORDER BY rental_duration ASC;
+
+-- part 3 order by rental_duration descending
+SELECT * FROM film 
+WHERE 2 < rental_duration AND rental_duration < 5
+ORDER BY rental_duration DESC;

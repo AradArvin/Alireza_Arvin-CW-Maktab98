@@ -30,3 +30,7 @@ ORDER BY last_update DESC;
 SELECT * FROM film 
 WHERE 2 < rental_duration AND rental_duration < 5
 ORDER BY last_update ASC;
+
+--part 4 min max avg
+SELECT ROUND(AVG(length)) AS film_length_average,
+MAX(length) as maximum_length, MIN(length) as minimum_length FROM film;

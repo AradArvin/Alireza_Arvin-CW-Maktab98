@@ -21,3 +21,7 @@ WHERE district LIKE 'California' OR district LIKE 'Alberta';
 SELECT address FROM address
 WHERE district LIKE 'California' OR district LIKE 'Alberta'
 OR district LIKE 'Texas' OR district LIKE 'Hamilton';
+
+-- Part6
+SELECT * FROM address
+WHERE address2 IS NULL;

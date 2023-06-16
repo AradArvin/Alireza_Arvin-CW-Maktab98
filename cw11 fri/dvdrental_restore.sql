@@ -21,7 +21,12 @@ SELECT * FROM film
 WHERE 2 < rental_duration AND rental_duration < 5
 ORDER BY rental_duration ASC;
 
--- part 3 order by rental_duration descending
+-- part 3 order by last_update descending
 SELECT * FROM film 
 WHERE 2 < rental_duration AND rental_duration < 5
-ORDER BY rental_duration DESC;
+ORDER BY last_update DESC;
+
+-- part 3 order by last_update ascending
+SELECT * FROM film 
+WHERE 2 < rental_duration AND rental_duration < 5
+ORDER BY last_update ASC;

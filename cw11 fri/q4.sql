@@ -12,3 +12,7 @@ COUNT(address) AS address_count
 FROM address
 GROUP BY district
 ORDER BY address_count DESC LIMIT 3;
+
+-- Part4
+SELECT district FROM address
+WHERE district LIKE 'California' OR district LIKE 'Alberta';

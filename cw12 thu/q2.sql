@@ -55,3 +55,11 @@ WHERE length > (
 	SELECT AVG(length)
 	FROM film 
 );
+
+-- Part8
+SELECT f.film_id, f.title, re.return_date FROM film AS f
+JOIN inventory AS inv
+ON f.film_id = inv.film_id
+JOIN rental AS re
+ON inv.inventory_id = re.inventory_id
+WHERE re.return_date BETWEEN '2005-05-29' AND '2005-05-30';

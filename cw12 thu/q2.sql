@@ -29,3 +29,12 @@ JOIN film AS f
 ON fc.film_id = f.film_id
 GROUP BY ca.name
 HAVING Count(f.title) BETWEEN 60 AND 68;
+
+-- Part5
+SELECT f.film_id, f.title, ca.name AS category_name, la.name AS language FROM category AS ca
+JOIN film_category AS fc
+ON ca.category_id = fc.category_id
+JOIN film AS f
+ON fc.film_id = f.film_id
+JOIN language AS la
+ON f.language_id = la.language_id;

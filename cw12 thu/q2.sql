@@ -48,3 +48,10 @@ JOIN inventory AS inv
 ON re.inventory_id = inv.inventory_id
 JOIN film as f
 ON inv.film_id = f.film_id;
+
+-- Part7
+SELECT title, length FROM film
+WHERE length > (
+	SELECT AVG(length)
+	FROM film 
+);

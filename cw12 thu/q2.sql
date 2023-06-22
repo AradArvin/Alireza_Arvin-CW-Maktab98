@@ -38,3 +38,13 @@ JOIN film AS f
 ON fc.film_id = f.film_id
 JOIN language AS la
 ON f.language_id = la.language_id;
+
+-- Part6
+SELECT CONCAT(cu.first_name,' ',cu.last_name) AS customer_name, f.title AS film_name,
+(re.return_date - re.rental_date) AS rental_duration FROM customer AS cu
+JOIN rental AS re
+ON cu.customer_id = re.customer_id
+JOIN inventory AS inv
+ON re.inventory_id = inv.inventory_id
+JOIN film as f
+ON inv.film_id = f.film_id;

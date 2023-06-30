@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,20 @@
     <link rel="stylesheet" href="style7.css">
     <title>Document</title>
 </head>
+
 <body class="container py-5">
     <table class="table caption-top">
         <caption class="capties"">TABLE</caption>
         <thead>
             <tr>
-                <th scope="col">SR.NO.</th>
-                <th scope="col">FirstName</th>
-                <th scope="col">LastName</th>
-                <th scope="col">Age</th>
-                <th scope="col">City</th>
-                <th scope="col">Country</th>
+                <th scope=" col">SR.NO.</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Age</th>
+            <th scope="col">City</th>
+            <th scope="col">Country</th>
             </tr>
-        </thead>
+            </thead>
         <tbody>
             <tr>
                 <th scope="row">1</th>
@@ -51,14 +53,14 @@
         <caption class="capties"">TABLE (bordered)</caption>
         <thead>
             <tr>
-                <th scope="col">SR.NO.</th>
-                <th scope="col">FirstName</th>
-                <th scope="col">LastName</th>
-                <th scope="col">Age</th>
-                <th scope="col">City</th>
-                <th scope="col">Country</th>
+                <th scope=" col">SR.NO.</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Age</th>
+            <th scope="col">City</th>
+            <th scope="col">Country</th>
             </tr>
-        </thead>
+            </thead>
         <tbody>
             <tr>
                 <th scope="row">1</th>
@@ -90,14 +92,14 @@
         <caption class="capties"">TABLE (striped & bordered)</caption>
         <thead>
             <tr>
-                <th scope="col">SR.NO.</th>
-                <th scope="col">FirstName</th>
-                <th scope="col">LastName</th>
-                <th scope="col">Age</th>
-                <th scope="col">City</th>
-                <th scope="col">Country</th>
+                <th scope=" col">SR.NO.</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Age</th>
+            <th scope="col">City</th>
+            <th scope="col">Country</th>
             </tr>
-        </thead>
+            </thead>
         <tbody>
             <tr>
                 <th scope="row">1</th>
@@ -133,57 +135,66 @@
         <br>
         <br>
     </div>
-    <form>
-        <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label boldie">First Name</label>
-          <input type="text" class="form-control" id="exampleInputFName1">
+    <form >
+        <div class="row align-items-center">
+            <div class="col-md-5 mb-2">
+                <label for="exampleInputFName1" class="form-label boldie">First Name</label>
+                <input type="text" class="form-control" id="exampleInputFName1">
+            </div>
+            <div class="col-md-5 mb-2">
+                <label for="exampleInputLname1" class="form-label boldie">Last Name</label>
+                <input type="text" class="form-control" id="exampleInputLname1">
+            </div>
         </div>
-        <div class="mb-3">
-          <label for="exampleInputPassword1" class="form-label boldie">Last Name</label>
-          <input type="text" class="form-control" id="exampleInputLname1">
+        <br>
+        <div class="row align-items-center">
+            <div class="col-md-5 mb-2">
+                <label for="exampleInputCompany1" class="form-label boldie">Company</label>
+                <input type="text" class="form-control" id="exampleInputCompany1">
+            </div>
+            <div class="col-md-5 mb-2">
+                <label for="exampleInputPhone1" class="form-label boldie">Phone Number</label>
+                <input type="number" class="form-control" id="exampleInputPhone1" placeholder="phone" >
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label boldie">Company</label>
-            <input type="text" class="form-control" id="exampleInputCompany1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label boldie">Phone Number</label>
-            <input type="number" class="form-control" id="exampleInputPhone1">
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label boldie">Email Adress</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label boldie">Your website please include https://</label>
-            <input type="text" class="form-control" id="exampleInputUrl1">
-          </div>
-
+        <br>
+        <div class="row align-items-center">
+            <div class="col-md-5 mb-2">
+                <label for="exampleInputEmail1" class="form-label boldie">Email Adress</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="col-md-5 mb-2">
+                <label for="exampleInputUrl1" class="form-label boldie">Your website please include https://</label>
+                <input type="text" class="form-control" id="exampleInputUrl1" placeholder="url">
+            </div>
+        </div>
+    
         <br>
         <p class="boldie">When is the best time of day to reach you?</p>
         <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
             <label class="form-check-label" for="flexRadioDefault1">
-              Morning
+                Morning
             </label>
-          </div>
-          <div class="form-check">
+        </div>
+        <div class="form-check">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
             <label class="form-check-label" for="flexRadioDefault2">
-              Evening
+                Evening
             </label>
-          </div>
+        </div>
 
-          <br>
-          <p class="boldie">Would you like to recieve our email newsletter?</p>
+        <br>
+        <p class="boldie">Would you like to recieve our email newsletter?</p>
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Sure!</label>
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Sure!</label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    
-    <script> src="boostrap/js/bootstrap.js"</script>
+    </form>
+
+    <script> src = "boostrap/js/bootstrap.js"</script>
 </body>
+
 </html>

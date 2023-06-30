@@ -1,0 +1,20 @@
+a:link {
+    text-decoration: none;
+    
+}
+
+a:visited {
+    color: #000;
+}
+
+a:hover {
+    color: blue;
+}
+
+#wiki:active {
+    color: green;
+}
+
+#google:active {
+    color: yellow;
+}

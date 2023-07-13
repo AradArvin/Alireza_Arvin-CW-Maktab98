@@ -1,11 +1,10 @@
 <header>
     <div>
-        <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'post' %}">Posts</a>
-        <a href="{% url 'category' %}">Category</a>
-        <a href="{% url 'author' %}">Author</a>
+        <a href="{% url 'comment' %}">Comments</a>
+        <a href="{% url 'category' %}">Categories</a>
+        <a href="{% url 'author' %}">Authors</a>
     </div>
 </header>
-
 
 {% block content %} {% endblock content %}

@@ -4,12 +4,12 @@ from django.db import models
 # Create your models here.
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    content = models.TextField()
     author = models.ForeignKey(
         "auth.User",
         on_delete=models.CASCADE,
         default="auth.User",
     )
+    content = models.TextField()
     publication_date = models.DateField
 
     def __str__(self) -> str:
@@ -31,7 +31,7 @@ class Comment(models.Model):
     date = models.DateField()
 
     def __str__(self) -> str:
-        return self.post, self.author
+        return self.content
 
 
 class Author(models.Model):
@@ -39,4 +39,4 @@ class Author(models.Model):
     bio = models.TextField()
 
     def __str__(self) -> str:
-        return self.name, self.bio
+        return self.name

@@ -22,4 +22,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", HomePageView.as_view(), name="home"),
     path("", include("BlogApp.urls")),
+    path("", include("author.urls")),
+    path("", include("category.urls")),
 ]
+
+
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

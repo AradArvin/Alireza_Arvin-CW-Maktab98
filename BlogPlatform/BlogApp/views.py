@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Post, Comment
+from .models import Post, Comment, Category
 
 
 # Create your views here.
@@ -20,3 +20,8 @@ def post_details(request, pk):
     post = Post.objects.get(pk=pk)
     comments = Comment.objects.filter(post=post)
     return render(request, "post_detail.html", {"post": post, "comments": comments})
+
+
+def categories(request):
+    category = Category.objects.all()
+    return render(request, "category.html", {"categories": category})

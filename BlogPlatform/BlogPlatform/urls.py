@@ -26,7 +26,6 @@ urlpatterns = [
     path("", HomePageView.as_view(), name="home"),
     path("", include("BlogApp.urls")),
     path("", include("author.urls")),
-    path("", include("category.urls")),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

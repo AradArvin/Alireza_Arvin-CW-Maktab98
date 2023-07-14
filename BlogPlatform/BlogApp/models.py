@@ -1,10 +1,19 @@
 from django.db import models
 from author.models import Author
-from category.models import Category
 from django.urls import reverse
 
 
 # Create your models here.
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+
+    def __str__(self) -> str:
+        return self.name
+
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(

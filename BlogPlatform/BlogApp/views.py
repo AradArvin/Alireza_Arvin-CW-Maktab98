@@ -9,6 +9,11 @@ class BlogPostView(ListView):
     template_name = "post.html"
 
 
-class BlogCommentView(DetailView):
+class BlogCommentView(ListView):
     model = Comment
     template_name = "comment.html"
+
+
+class BlogDetailView(DetailView):
+    model = Post
+    template_name = "post_detail.html"

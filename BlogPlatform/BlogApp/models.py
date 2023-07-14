@@ -10,15 +10,13 @@ class Post(models.Model):
     author = models.ForeignKey(
         Author,
         on_delete=models.CASCADE,
-        blank=False,
     )
     category = models.ForeignKey(
         Category,
         on_delete=models.CASCADE,
-        blank=False,
     )
     content = models.TextField()
-    publication_date = models.DateField
+    publication_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.title
@@ -31,15 +29,13 @@ class Comment(models.Model):
     post = models.ForeignKey(
         Post,
         on_delete=models.CASCADE,
-        blank=False,
     )
     author = models.ForeignKey(
         Author,
         on_delete=models.CASCADE,
-        blank=False,
     )
     content = models.TextField()
-    date = models.DateField()
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
         return self.content

@@ -1,8 +1,11 @@
-% extends "base.html" %}
+{% extends "base.html" %}
+
 
 {% block content %}
+{% for post in post_list %}
 <div class="category-entry">
     <h2>{{ category.name }}</h2>
     <p>{{ category.description }}</p>
 </div>
+{% endfor %}
 {% endblock content %}

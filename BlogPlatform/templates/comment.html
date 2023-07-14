@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 
+
+
 {% block content %}
+{% for post in post_list %}
 <div class="comment-entry">
     <h2>{{ comment.post }}</h2>
     <p>{{ comment.author }}</p>
     <p>{{ comment.content }}</p>
     <p>{{ comment.date }}</p>
 </div>
+{% endfor %}
 {% endblock content %}

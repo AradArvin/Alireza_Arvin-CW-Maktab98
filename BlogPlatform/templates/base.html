@@ -7,12 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog App</title>
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 
 <body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark fonts">
         <div class="container px-5">
-            <a class="navbar-brand" href="{% url 'home' %}">Home Page</a>
+            <a class="navbar-brand" id="fsize1" href="{% url 'home' %}">Blog App - Home</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -20,15 +23,42 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <a class="m-2" href="{% url 'post' %}">Posts</a>
-                    <a class="m-2" href="{% url 'comment' %}">Comments</a>
-                    <a class="m-2" href="{% url 'category' %}">Categories</a>
-                    <a class="m-2" href="{% url 'author' %}">Authors</a>
+                    <a class="m-2 no_decor" id="fsize2" href="{% url 'post' %}">Posts</a>
+                    <a class="m-2 no_decor" id="fsize2" href="{% url 'comment' %}">Comments</a>
+                    <a class="m-2 no_decor" id="fsize2" href="{% url 'category' %}">Categories</a>
+                    <a class="m-2 no_decor" id="fsize2" href="{% url 'author' %}">Authors</a>
                 </ul>
             </div>
         </div>
     </nav>
-    {% block content %} {% endblock content %}
+    <section class="bg-black py-5 border fonts2 " id="fsize2">
+        {% block content %} {% endblock content %}
+    </section>
+    <footer class="footer bg-dark">
+        <div class="row py-5 px-5">
+            <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                <ul class="list-inline mb-2">
+                    <p class="fonts no_decor" id="fsize1">Made with Django (^-^)</p>
+                </ul>
+            </div>
+            <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item me-4">
+                        <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                    </li>
+                    <li class="list-inline-item me-4">
+                        <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        </div>
+    </footer>
+
 </body>
+
 
 </html>

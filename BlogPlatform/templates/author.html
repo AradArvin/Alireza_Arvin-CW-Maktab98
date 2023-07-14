@@ -2,8 +2,9 @@
 
 
 {% block content %}
-{% for post in post_list %}
-<div class="author-entry">
+<h1>Authors:</h1>
+{% for author in author_list %}
+<div class="author-entry px-5">
     <h2>{{ author.name }}</h2>
     <p>{{ author.bio }}</p>
 </div>

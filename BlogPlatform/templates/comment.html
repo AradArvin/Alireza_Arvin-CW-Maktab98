@@ -3,8 +3,9 @@
 
 
 {% block content %}
-{% for post in post_list %}
-<div class="comment-entry">
+<h1>Comments:</h1>
+{% for comment in comment_list %}
+<div class="comment-entry px-5">
     <h2>{{ comment.post }}</h2>
     <p>{{ comment.author }}</p>
     <p>{{ comment.content }}</p>

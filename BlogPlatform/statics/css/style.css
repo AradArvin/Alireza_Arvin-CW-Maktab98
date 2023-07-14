@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+
+
+.no_decor {
+    color: white;
+    text-decoration: none;
+}
+
+.no_decor2 {
+    color: green;
+    text-decoration: none;
+}
+
+.fonts {
+    font-family: 'Lobster', sans-serif;
+}
+
+.fonts2 {
+    font-family: 'Playfair Display', sans-serif;
+    color: white;
+}
+
+#fsize1 {
+    font-size: 40px;
+}
+
+#fsize2 {
+    font-size: 25px;
+}
+
+.bgcol1 {
+    background: black;
+}
+
+section {
+    width: 100%;
+    padding: 0 7%;
+    display: table;
+    margin: 0;
+    max-width: none;
+    background-color: #373B44;
+    height: 100vh;

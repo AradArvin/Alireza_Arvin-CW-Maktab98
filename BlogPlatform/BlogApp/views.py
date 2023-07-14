@@ -18,4 +18,5 @@ def comments(request):
 
 def post_details(request, pk):
     post = Post.objects.get(pk=pk)
-    return render(request, "post_detail.html", {"post": post})
+    comments = Comment.objects.filter(post=post)
+    return render(request, "post_detail.html", {"post": post, "comments": comments})

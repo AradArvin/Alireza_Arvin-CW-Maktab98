@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+
 from .models import Category
 
 
 # Create your views here.
-class BlogCategoryView(ListView):
-    model = Category
-    template_name = "category.html"
+def categories(request):
+    category = Category.objects.all()
+    return render(request, "category.html", {"categories": category})

@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import BlogCategoryView
+from .views import categories
 
 
 urlpatterns = [
-    path("category/", BlogCategoryView.as_view(), name="category"),
+    path("category/", categories, name="category"),
 ]

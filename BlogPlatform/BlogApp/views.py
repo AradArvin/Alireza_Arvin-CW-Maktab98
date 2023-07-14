@@ -1,19 +1,21 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+
 from .models import Post, Comment
 
 
 # Create your views here.
-class BlogPostView(ListView):
-    model = Post
-    template_name = "post.html"
 
 
-class BlogCommentView(ListView):
-    model = Comment
-    template_name = "comment.html"
+def posts(request):
+    posts = Post.objects.all()
+    return render(request, "post.html", {"posts": posts})
 
 
-class BlogDetailView(DetailView):
-    model = Post
-    template_name = "post_detail.html"
+def comments(request):
+    comment = Comment.objects.all()
+    return render(request, "comment.html", {"comments": comment})
+
+
+def post_details(request, pk):
+    post = Post.objects.get(pk=pk)
+    return render(request, "post_detail.html", {"post": post})

@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from .models import Post, Comment, Category
 
 
@@ -8,7 +7,7 @@ from .models import Post, Comment, Category
 
 def posts(request):
     posts = Post.objects.all()
-    return render(request, "post.html", {"posts": posts})
+    return render(request, "BlogApp/templates/post.html", {"posts": posts})
 
 
 def comments(request):
@@ -19,9 +18,13 @@ def comments(request):
 def post_details(request, pk):
     post = Post.objects.get(pk=pk)
     comments = Comment.objects.filter(post=post)
-    return render(request, "post_detail.html", {"post": post, "comments": comments})
+    return render(
+        request,
+        "BlogApp/templates/post_detail.html",
+        {"post": post, "comments": comments},
+    )
 
 
 def categories(request):
     category = Category.objects.all()
-    return render(request, "category.html", {"categories": category})
+    return render(request, "BlogApp/templates/category.html", {"categories": category})

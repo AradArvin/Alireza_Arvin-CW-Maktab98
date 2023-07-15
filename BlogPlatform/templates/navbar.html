@@ -1,0 +1,16 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark fonts">
+    <div class="container px-5">
+        <a class="navbar-brand" id="fsize1" href="{% url 'home' %}">Blog App - Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <a class="m-2 no_decor" id="fsize2" href="{% url 'post' %}">Posts</a>
+                <a class="m-2 no_decor" id="fsize2" href="{% url 'author' %}">Authors</a>
+                <a class="m-2 no_decor" id="fsize2" href="{% url 'category' %}">Categories</a>
+            </ul>
+        </div>
+    </div>
+</nav>

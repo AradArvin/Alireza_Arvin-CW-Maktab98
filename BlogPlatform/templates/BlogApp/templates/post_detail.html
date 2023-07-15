@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Post Detail:</h1>
+<div class="post-entry px-5">
+    <h2>{{ post.title }}:</h2>
+    <p>{{ post.content }}</p>
+    <p>Category: {{ post.category }}</p>
+    <p><a href="{% url 'author_detail' post.author.pk %}" style="color: green; text-decoration: none;">Posted by:
+            {{post.author }}</a>
+    </p>
+    <p>Last update: {{ post.publication_date }}</p>
+    <div class="bg-dark px-5 border border-success border-3">
+        <h2 class="text-white">Comments:</h2>
+        {% for comment in comments %}
+        <div class="comment-entry border border-warning border-2 m-4" style="background-color: beige;">
+            <h3><a href="{% url 'author_detail' comment.author.pk %}"
+                    style="color: green; text-decoration: none;">{{comment.author}}:</a>
+            </h3>
+            <div class="text-black m-4">
+                <p>{{ comment.content }}</p>
+                <p>{{ comment.date }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

@@ -11,8 +11,7 @@
         <img src="{{ author.profile_image.url }}" class="card-img-top" alt="..." style="height: 265px; width: 265px;">
         <div class="card-body">
             <h5 class="card-title">{{ author.name }}</h5>
-            <p class="card-text">{{ author.bio }}</p>
-            <a href="#" class="btn btn-primary">Author's Post</a>
+            <a href="{% url 'author_detail' author.pk %}" class="btn btn-primary">Author's Info</a>
         </div>
     </div>
     {% endfor %}

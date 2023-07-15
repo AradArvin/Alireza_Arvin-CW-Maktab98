@@ -19,7 +19,6 @@
 
 .fonts2 {
     font-family: 'Playfair Display', sans-serif;
-    color: white;
 }
 
 #fsize1 {
@@ -27,7 +26,7 @@
 }
 
 #fsize2 {
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .bgcol1 {
@@ -42,3 +41,11 @@ section {
     max-width: none;
     background-color: #373B44;
     height: 100vh;
+}
+
+.imagein {
+    background-image: url("../img/snow-field-mountain-sky-clouds-scenery-digital-art-4k-wallpaper-uhdpaper.com-712@1@k.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}

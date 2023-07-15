@@ -5,8 +5,10 @@
 <h1>Categories:</h1>
 {% for category in categories %}
 <div class="category-entry px-5">
-    <h2>{{ category.name }}</h2>
-    <p>--{{ category.description }}</p>
+    <h2 class="text-info">{{ category.name }}:</h2>
+    <div class="px-4 m-2">
+        <p>{{ category.description }}</p>
+    </div>
 </div>
 {% endfor %}
 

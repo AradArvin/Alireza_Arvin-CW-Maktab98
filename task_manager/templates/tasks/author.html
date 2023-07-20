@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% load static %}
+<style>
+    #imageimport {
+        background-image: url("{% static 'assets/img/about-bg.jpg' %}");
+    }
+</style>
+<header class="masthead" id="imageimport">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>About Me</h1>
+                    <span class="subheading">This is about the blog author.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+
+{% block content %}
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <p>Hi, I'm Arad Arvin and This is my personal task blog.</p>
+                <p>This blog is a starting project with less backend and more frontend programming.</p>
+                <p>Its good to get this to work like I wanted. I wish you love, luck and happiness. (^-^)</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% block title%}
+    {%endblock title%}
+    <link rel="icon" type="image/x-icon" href="{% static 'assets/icons/favicon.ico' %}">
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet"
+        type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+        rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+    {% block header %}{% endblock header %}
+    <section>
+        {% block content %}{% endblock content %}
+    </section>
+    {% include 'footer.html' %}
+
+    <script src="{% static 'scripts/scripts.js' %}"></script>
+</body>
+
+</html>

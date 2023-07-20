@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+
+{% block title%}
+<title>Task - Home Page</title>
+{%endblock title%}
+
+{% block header %}
+{% load static %}
+<style>
+    #imageimport {
+        background-image: url("{% static 'assets/img/home-bg.jpg' %}");
+    }
+</style>
+<header class="masthead" id="imageimport">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Welcome to Task Blog</h1>
+                    <span class="subheading">A Blog to Manage your Tasks</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block content %}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            {% for task in tasks %}
+            <!-- Post preview-->
+            <div class="post-preview">
+                <a href="{% url 'task_detail' task.pk %}">
+                    <h2 class="post-title">{{ task.title }}</h2>
+                    <h3 class="post-subtitle">{{ task.description }}</h3>
+                </a>
+                <p class="post-meta">
+                    Task set by
+                    <a href="{% url 'author' %}">{{ task.author }}</a>
+                    For {{ task.due_date }}
+                </p>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4">
+            {% endfor %}
+            <br>
+            <br>
+            <br>
+            <div class="coljustify-content-center">
+                {% if tasks.has_previous %}
+                <button type="button" class="btn btn-dark m-1"><a class="text-white" href="?page=1">1st</a></button>
+                <button type="button" class="btn btn-dark m-1"><a class="text-white"
+                        href="?page={{ tasks.previous_page_number }}">Previous</a></button>
+
+                {% endif %}
+
+                Page {{ tasks.number }} of {{ tasks.paginator.num_pages }}
+
+                {% if tasks.has_next %}
+                <button type="button" class="btn btn-dark m-1"><a class="text-white"
+                        href="?page={{ tasks.next_page_number }}">Next</a></button>
+                <button type="button" class="btn btn-dark m-1"><a class="text-white"
+                        href="?page={{ tasks.paginator.num_pages }}">Last</a></button>
+                {% endif %}
+            </div>
+            <br>
+            <br>
+        </div>
+    </div>
+</div>
+{% endblock content %}

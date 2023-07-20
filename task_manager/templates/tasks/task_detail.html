@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block header %}
+{% load static %}
+<style>
+    #imageimport {
+        background-image: url("{% static 'assets/img/task2-bg.jpg' %}");
+    }
+</style>
+<header class="masthead" id="imageimport">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>Task Details</h1>
+                    <span class="subheading">Complete info for the chosen task.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block content%}
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post preview-->
+            <div class="task-entry">
+                <div class="task-preview">
+                    <h2 class="task-title">Title: {{ task.title }}</h2>
+                    <h5 class="task-subtitle">Description: {{ task.description }}</h3>
+                    <h6 class="task-subtitle">Status: {{ task.status }}</h4>
+                    <h6 class="task-subtitle">Category: {{ task.category }}</h4>
+                        <pre><h6 class="task-subtitle">Tags: {% for tag in task.tag.all %}{{ tag.name }}  {% endfor %}</h4></pre>
+                    <p class="task-meta">
+                        Task set by
+                        <a href="{% url 'author' %}">{{ task.author }}</a>
+                        For {{ task.due_date }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

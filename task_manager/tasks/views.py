@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.urls import path
 from .models import Task, Category
 from django.db.models import Q
 from django.core.paginator import Paginator
@@ -47,8 +48,14 @@ def search_task_result(request):
 
 
 def category_detail(request):
-    category = Category.objects.all()
-    return render(request, "tasks/category_detail.html", {"category": category})
+    if request.method == "POST":
+        name = request.POST.get("name")
+        description = request.POST.get("description")
+        Category.objects.create(name=name, description=description)
+        return redirect("category_detail")
+    else:
+        category = Category.objects.all()
+        return render(request, "tasks/category_detail.html", {"category": category})
 
 
 def author(request):

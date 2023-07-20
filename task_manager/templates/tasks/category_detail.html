@@ -45,7 +45,7 @@
     </table>
     <div>
 
-        <form method="POST" enctype="multipart/form-data">
+        <!-- <form method="POST" enctype="multipart/form-data">
 
 
             {% csrf_token %}
@@ -54,17 +54,16 @@
             {{ form.as_p }}
 
             <input type="submit" value="Submit">
-        </form>
+        </form> -->
 
-        <!-- <form class="d-flex col" role="create" method="POST" action="{% url 'category_detail' %}">
+        <form class="d-flex col" role="create" method="POST" action="{% url 'category_detail' %}">
             {% csrf_token %}
-            {{ form.as_p }}
             <input class="form-control me-2 text-white" type="search" placeholder="Category name" aria-label="create"
                 name="name" style="background-color: black;">
             <input class="form-control me-2 text-white" type="search" placeholder="Category description"
                 aria-label="create" name="description" style="background-color: black;">
-            <button class=" btn btn-dark" type="submit">Submit</button>
-        </form> -->
+            <button class=" btn btn-dark" type="submit" value="Submit">Submit</button>
+        </form>
     </div>
 </div>
 {% endblock content %}

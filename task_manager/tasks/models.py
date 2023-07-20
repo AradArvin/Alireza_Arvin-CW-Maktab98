@@ -20,11 +20,6 @@ class Tag(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=50)
-    author = models.ForeignKey(
-        "auth.User",
-        on_delete=models.CASCADE,
-        default="auth.User",
-    )
     description = models.TextField()
     due_date = models.DateTimeField()
 

@@ -6,6 +6,7 @@ from .views import (
     task_detail,
     search_task,
     search_task_result,
+    category,
     category_detail,
 )
 
@@ -17,5 +18,6 @@ urlpatterns = [
     path("task/<int:pk>/", task_detail, name="task_detail"),
     path("search/", search_task, name="search_task"),
     path("search_result/", search_task_result, name="search_task_result"),
-    path("category/", category_detail, name="category_detail"),
+    path("category/", category, name="category"),
+    path("category/<int:pk>/", category_detail, name="category_detail"),
 ]

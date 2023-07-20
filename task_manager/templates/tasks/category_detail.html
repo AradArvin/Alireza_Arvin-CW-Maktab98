@@ -44,18 +44,6 @@
         </tbody>
     </table>
     <div>
-
-        <!-- <form method="POST" enctype="multipart/form-data">
-
-
-            {% csrf_token %}
-
-
-            {{ form.as_p }}
-
-            <input type="submit" value="Submit">
-        </form> -->
-
         <form class="d-flex col" role="create" method="POST" action="{% url 'category_detail' %}">
             {% csrf_token %}
             <input class="form-control me-2 text-white" type="create" placeholder="Category name" aria-label="create"

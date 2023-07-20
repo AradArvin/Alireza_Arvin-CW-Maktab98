@@ -58,9 +58,9 @@
 
         <form class="d-flex col" role="create" method="POST" action="{% url 'category_detail' %}">
             {% csrf_token %}
-            <input class="form-control me-2 text-white" type="search" placeholder="Category name" aria-label="create"
+            <input class="form-control me-2 text-white" type="create" placeholder="Category name" aria-label="create"
                 name="name" style="background-color: black;">
-            <input class="form-control me-2 text-white" type="search" placeholder="Category description"
+            <input class="form-control me-2 text-white" type="create" placeholder="Category description"
                 aria-label="create" name="description" style="background-color: black;">
             <button class=" btn btn-dark" type="submit" value="Submit">Submit</button>
         </form>

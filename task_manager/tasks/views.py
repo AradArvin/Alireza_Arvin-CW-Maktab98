@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.urls import path
-from .models import Task, Category
+from .models import Task, Category, Tag
 from django.db.models import Q
 from django.core.paginator import Paginator
 
@@ -18,12 +18,36 @@ def home(request):
 
 
 def all_tasks(request):
-    task_list = Task.objects.all().order_by("-due_date")
-    pagination = Paginator(task_list, 10)
-    page = request.GET.get("page")
-    tasks = pagination.get_page(page)
-    context = {"tasks": tasks}
-    return render(request, "tasks/all_tasks.html", context)
+    if request.method == "POST":
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        due_date = request.POST.get("due_date")
+        status = request.POST.get("status")
+        category = request.POST.get("category")
+        tag = request.POST.get("tag")
+        Task.objects.create(
+            title=title,
+            description=description,
+            due_date=due_date,
+            status=status,
+            category=category,
+            tag=tag,
+        )
+        return redirect("all_tasks")
+    else:
+        task_list = Task.objects.all().order_by("-due_date")
+        pagination = Paginator(task_list, 10)
+        page = request.GET.get("page")
+        tasks = pagination.get_page(page)
+        category = Category.objects.all()
+        tags = Tag.objects.all()
+        context = {
+            "tasks": tasks,
+            "category": category,
+            "tags": tags,
+            "status": dict(Task.STATUS_LIST),
+        }
+        return render(request, "tasks/all_tasks.html", context)
 
 
 def task_detail(request, pk):

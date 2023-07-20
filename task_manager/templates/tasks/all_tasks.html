@@ -68,6 +68,40 @@
             </div>
             <br>
             <br>
+            <form class="d-flex row" role="create" method="POST" action="{% url 'all_tasks' %}">
+                {% csrf_token %}
+                <label for="title" class="form-label">Title:</label>
+                <input class="form-control me-2 text-white m-2" type="create" placeholder="Task Title"
+                    aria-label="create" name="title" style="background-color: black; height: 50px;">
+                <label for="description" class="form-label">Description:</label>
+                <input class="form-control me-2 text-white m-2" type="create" placeholder="Task Description"
+                    aria-label="create" name="description" style="background-color: black; height: 100px;">
+                <label for="due_date" class="form-label">Due Date:</label>
+                <input class="form-date me-2 text-black m-2" type="datetime-local" placeholder="Task Due Date"
+                    aria-label="create" name="due_date" style="background-color: white; height: 50px;">
+                <label for="status" class="form-label">Status:</label>
+                <select class="form-select text-white bg-black m-2" aria-label="select" name="status">
+                    <option selected>Select Status</option>
+                    {% for k, v in status.items %}
+                    <option value="{{ k }}">{{ v }}</option>
+                    {% endfor %}
+                </select>
+                <label for="category" class="form-label">Category:</label>
+                <select class="form-select text-white bg-black m-2" aria-label="select" name="category">
+                    <option selected>Select Category</option>
+                    {% for cat in category %}
+                    <option value="{{ cat.counter }}">{{ cat }}</option>
+                    {% endfor %}
+                </select>
+                <label for="tag" class="form-label">Tags:</label>
+                <select class="form-select text-white bg-black m-2" aria-label="select" name="tag" multiple>
+                    {% for tag in tags %}
+                    <option value="{{ tag.counter }}">{{ tag }}</option>
+                    {% endfor %}
+                </select>
+                <button class=" btn btn-dark m-2" type="submit" value="Submit" style="width: 10rem;">Submit</button>
+            </form>
         </div>
     </div>
+    <br>
     {% endblock content %}

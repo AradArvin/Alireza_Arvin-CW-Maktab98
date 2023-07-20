@@ -38,9 +38,7 @@
                     <h3 class="post-subtitle">{{ task.description }}</h3>
                 </a>
                 <p class="post-meta">
-                    Task set by
-                    <a href="{% url 'author' %}">{{ task.author }}</a>
-                    For {{ task.due_date }}
+                    Task set For {{ task.due_date }}
                 </p>
             </div>
             <!-- Divider-->
@@ -90,13 +88,13 @@
                 <select class="form-select text-white bg-black m-2" aria-label="select" name="category">
                     <option selected>Select Category</option>
                     {% for cat in category %}
-                    <option value="{{ cat.counter }}">{{ cat }}</option>
+                    <option value="{{ cat.pk }}">{{ cat.name }}</option>
                     {% endfor %}
                 </select>
                 <label for="tag" class="form-label">Tags:</label>
                 <select class="form-select text-white bg-black m-2" aria-label="select" name="tag" multiple>
                     {% for tag in tags %}
-                    <option value="{{ tag.counter }}">{{ tag }}</option>
+                    <option value="{{ tag.pk }}">{{ tag.name }}</option>
                     {% endfor %}
                 </select>
                 <button class=" btn btn-dark m-2" type="submit" value="Submit" style="width: 10rem;">Submit</button>

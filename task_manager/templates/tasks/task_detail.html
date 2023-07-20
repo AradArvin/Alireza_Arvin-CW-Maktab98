@@ -31,14 +31,12 @@
                 <div class="task-preview">
                     <h2 class="task-title">Title: {{ task.title }}</h2>
                     <h5 class="task-subtitle">Description: {{ task.description }}</h3>
-                    <h6 class="task-subtitle">Status: {{ task.status }}</h4>
-                    <h6 class="task-subtitle">Category: {{ task.category }}</h4>
-                        <pre><h6 class="task-subtitle">Tags: {% for tag in task.tag.all %}{{ tag.name }}  {% endfor %}</h4></pre>
-                    <p class="task-meta">
-                        Task set by
-                        <a href="{% url 'author' %}">{{ task.author }}</a>
-                        For {{ task.due_date }}
-                    </p>
+                        <h6 class="task-subtitle">Status: {{ task.status }}</h4>
+                            <h6 class="task-subtitle">Category: {{ task.category }}</h4>
+                                <pre><h6 class="task-subtitle">Tags: {% for tag in task.tag.all %}{{ tag.name }}  {% endfor %}</h4></pre>
+                                <p class="post-meta">
+                                    Task set For {{ task.due_date }}
+                                </p>
                 </div>
             </div>
         </div>

@@ -23,16 +23,19 @@ def all_tasks(request):
         description = request.POST.get("description")
         due_date = request.POST.get("due_date")
         status = request.POST.get("status")
-        category = request.POST.get("category")
-        tag = request.POST.get("tag")
+        category_id = request.POST.get("category")
+        category = Category.objects.get(pk=category_id)
+        tag_s = request.POST.get("tag")
+        tag_list = []
+        for tag in tag_s:
+            tag_list.append(Tag.objects.get(pk=tag))
         Task.objects.create(
             title=title,
             description=description,
             due_date=due_date,
             status=status,
             category=category,
-            tag=tag,
-        )
+        ).tag.set(tag_list)
         return redirect("all_tasks")
     else:
         task_list = Task.objects.all().order_by("-due_date")

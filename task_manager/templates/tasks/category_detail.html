@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 
-
 {% block header %}
 {% load static %}
 <style>
@@ -13,8 +12,8 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
-                    <h1>Categories</h1>
-                    <span class="subheading">This is a full list of all categories.</span>
+                    <h1>Category Detail</h1>
+                    <span class="subheading">You can see category detail bellow.</span>
                 </div>
             </div>
         </div>
@@ -23,35 +22,48 @@
 {% endblock header %}
 
 {% block content %}
-<div class="m-5">
-    <table class="table table-striped table-bordered caption-top">
-        <caption style="text-align: center;">Category Detail</caption>
-        <thead>
-            <tr>
-                <th scope=" col">NO.</th>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in category %}
-            <tr>
-                <th scope="row">{{ forloop.counter }}</th>
-                <td>{{ item.name }}</td>
-                <td>{{ item.description }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <div>
-        <form class="d-flex col" role="create" method="POST" action="{% url 'category_detail' %}">
-            {% csrf_token %}
-            <input class="form-control me-2 text-white" type="create" placeholder="Category name" aria-label="create"
-                name="name" style="background-color: black;">
-            <input class="form-control me-2 text-white" type="create" placeholder="Category description"
-                aria-label="create" name="description" style="background-color: black;">
-            <button class=" btn btn-dark" type="submit" value="Submit">Submit</button>
-        </form>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post preview-->
+            <div class="category-entry">
+                <div class="category-preview">
+                    <h2 class="category-title">Title: {{ category.name }}</h2>
+                    <h5 class="category-subtitle">Description: {{ category.description }}</h3>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+<hr class="my-4">
+<br>
+<br>
+<div class="container px-4 px-lg-5" style="width: 48rem;">
+    <form class="d-flex row" role="create" method="POST" action="{% url 'category_detail' category.pk %}">
+        {% csrf_token %}
+        <label for="title" class="form-label">Title:</label>
+        <input class="form-control me-2 text-white m-2" type="create" placeholder="Task Title" aria-label="create"
+            name="title" style="background-color: black; height: 50px;">
+        <label for="description" class="form-label">Description:</label>
+        <input class="form-control me-2 text-white m-2" type="create" placeholder="Task Description" aria-label="create"
+            name="description" style="background-color: black; height: 100px;">
+        <label for="due_date" class="form-label">Due Date:</label>
+        <input class="form-date me-2 text-black m-2" type="datetime-local" placeholder="Task Due Date"
+            aria-label="create" name="due_date" style="background-color: white; height: 50px;">
+        <label for="status" class="form-label">Status:</label>
+        <select class="form-select text-white bg-black m-2" aria-label="select" name="status">
+            <option selected>Select Status</option>
+            {% for k, v in status.items %}
+            <option value="{{ k }}">{{ v }}</option>
+            {% endfor %}
+        </select>
+        <label for="tag" class="form-label">Tags:</label>
+        <select class="form-select text-white bg-black m-2" aria-label="select" name="tag" multiple>
+            {% for tag in tags %}
+            <option value="{{ tag.pk }}">{{ tag.name }}</option>
+            {% endfor %}
+        </select>
+        <button class=" btn btn-dark m-2" type="submit" value="Submit" style="width: 10rem;">Submit</button>
+    </form>
 </div>
 {% endblock content %}

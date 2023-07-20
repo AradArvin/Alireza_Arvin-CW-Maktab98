@@ -38,7 +38,7 @@ def all_tasks(request):
         ).tag.set(tag_list)
         return redirect("all_tasks")
     else:
-        task_list = Task.objects.all().order_by("-due_date")
+        task_list = Task.objects.all().order_by("due_date")
         pagination = Paginator(task_list, 10)
         page = request.GET.get("page")
         tasks = pagination.get_page(page)
@@ -74,15 +74,46 @@ def search_task_result(request):
             return render(request, "tasks/search_task_result.html", {})
 
 
-def category_detail(request):
+def category(request):
     if request.method == "POST":
         name = request.POST.get("name")
         description = request.POST.get("description")
         Category.objects.create(name=name, description=description)
-        return redirect("category_detail")
+        return redirect("category")
     else:
-        category = Category.objects.all()
-        return render(request, "tasks/category_detail.html", {"category": category})
+        categories = Category.objects.all()
+        context = {"categories": categories}
+        return render(request, "tasks/category.html", context)
+
+
+def category_detail(request, pk):
+    if request.method == "POST":
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        due_date = request.POST.get("due_date")
+        status = request.POST.get("status")
+        category = Category.objects.get(pk=pk)
+        tag_s = request.POST.get("tag")
+        tag_list = []
+        for tag in tag_s:
+            tag_list.append(Tag.objects.get(pk=tag))
+        Task.objects.create(
+            title=title,
+            description=description,
+            due_date=due_date,
+            status=status,
+            category=category,
+        ).tag.set(tag_list)
+        return redirect("category_detail", pk)
+    else:
+        category = Category.objects.get(pk=pk)
+        tags = Tag.objects.all()
+        context = {
+            "category": category,
+            "tags": tags,
+            "status": dict(Task.STATUS_LIST),
+        }
+        return render(request, "tasks/category_detail.html", context)
 
 
 def author(request):

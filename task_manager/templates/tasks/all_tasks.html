@@ -23,8 +23,9 @@
 {% endblock header %}
 
 {% block content %}
-<div class="m-2" style="padding-left: 100rem;">
-    <button type="button" class="btn btn-dark"><a class="text-white" href="{% url 'category' %}">Category</a></button>
+<div class="col m-2" style="padding-left: 90rem;">
+    <button type="button" class="btn btn-dark"><a class="text-white" href="{% url 'all_tags' %}">Tags</a></button>
+    <button type="button" class="btn btn-dark"><a class="text-white" href="{% url 'category' %}">Categories</a></button>
 </div>
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">

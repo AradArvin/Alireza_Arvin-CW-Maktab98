@@ -6,6 +6,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=50)
     description = models.TextField()
+    image = models.ImageField(upload_to="category/", blank=True, null=True)
 
     def __str__(self) -> str:
         return self.name
@@ -41,6 +42,7 @@ class Task(models.Model):
     )
 
     tag = models.ManyToManyField(Tag)
+    file = models.FileField(upload_to="taskfile/", blank=True, null=True)
 
     def __str__(self) -> str:
         return self.title

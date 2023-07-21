@@ -33,10 +33,66 @@
                     <h5 class="task-subtitle">Description: {{ task.description }}</h3>
                         <h6 class="task-subtitle">Status: {{ task.status }}</h4>
                             <h6 class="task-subtitle">Category: {{ task.category }}</h4>
-                                <pre><h6 class="task-subtitle">Tags: {% for tag in task.tag.all %}{{ tag.name }}  {% endfor %}</h4></pre>
+                                <pre><h6 class="task-subtitle">Tags: {% for tag in task.tag.all %}<a href="{% url 'tag_detail' tag.pk %}">{{ tag.name }}</a> {% endfor %}</h4></pre>
                                 <p class="post-meta">
                                     Task set For {{ task.due_date }}
                                 </p>
+                                <hr class="my-4">
+                </div>
+                <br>
+                <div>
+                    <br>
+                    <h2>Change task detail here:</h2>
+                    <form class="d-flex row" role="create" method="POST" action="{% url 'task_detail' task.pk %}">
+                        {% csrf_token %}
+                        <label for="title" class="form-label">Title:</label>
+                        <input class="form-control me-2 text-white m-2" type="create" placeholder="{{ task.title }}"
+                            aria-label="create" name="title" style="background-color: black; height: 50px;">
+                        <label for="description" class="form-label">Description:</label>
+                        <input class="form-control me-2 text-white m-2" type="create"
+                            placeholder="{{ task.description }}" aria-label="create" name="description"
+                            style="background-color: black; height: 100px;">
+                        <label for="due_date" class="form-label">Due Date:</label>
+                        <input class="form-date me-2 text-black m-2" type="datetime-local" placeholder="Task Due Date"
+                            aria-label="create" name="due_date" style="background-color: white; height: 50px;">
+                        <label for="status" class="form-label">Status:</label>
+                        <select class="form-select text-white bg-black m-2" aria-label="select" name="status">
+                            <option selected>{{ task.status }}</option>
+                            {% for k, v in status.items %}
+                            <option value="{{ k }}">{{ v }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="category" class="form-label">Category:</label>
+                        <select class="form-select text-white bg-black m-2" aria-label="select" name="category">
+                            <option selected>{{ task.category.pk }}</option>
+                            {% for cat in category %}
+                            <option value="{{ cat.pk }}">{{ cat.pk }} - {{ cat.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="tag" class="form-label">Tags:</label>
+                        <select class="form-select text-white bg-black m-2" aria-label="select" name="tag" multiple>
+                            {% for tag in tags %}
+                            <option value="{{ tag.pk }}">{{ tag.name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="file" class="form-label">File:</label>
+                        <input type="file" name="file">
+                        <button class=" btn btn-dark m-2" type="submit" value="Submit"
+                            style="width: 10rem;">Submit</button>
+                    </form>
+                </div>
+                <br>
+                <div>
+                    <hr class="my-4">
+                    <h2>Add a new tag here:</h2>
+                    <form class="d-flex row" role="create" method="POST" action="{% url 'create_tag' task.pk %}">
+                        {% csrf_token %}
+                        <label for="name" class="form-label">Tag Name:</label>
+                        <input class="form-control me-2 text-white m-2" type="create" placeholder="Enter Tag Name"
+                            aria-label="create" name="name" style="background-color: black; height: 50px;">
+                        <button class="btn btn-dark m-2" type="submit" value="Submit"
+                            style="width: 10rem;">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>

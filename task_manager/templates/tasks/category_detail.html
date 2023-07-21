@@ -39,31 +39,55 @@
 <br>
 <br>
 <div class="container px-4 px-lg-5" style="width: 48rem;">
-    <form class="d-flex row" role="create" method="POST" action="{% url 'category_detail' category.pk %}">
-        {% csrf_token %}
-        <label for="title" class="form-label">Title:</label>
-        <input class="form-control me-2 text-white m-2" type="create" placeholder="Task Title" aria-label="create"
-            name="title" style="background-color: black; height: 50px;">
-        <label for="description" class="form-label">Description:</label>
-        <input class="form-control me-2 text-white m-2" type="create" placeholder="Task Description" aria-label="create"
-            name="description" style="background-color: black; height: 100px;">
-        <label for="due_date" class="form-label">Due Date:</label>
-        <input class="form-date me-2 text-black m-2" type="datetime-local" placeholder="Task Due Date"
-            aria-label="create" name="due_date" style="background-color: white; height: 50px;">
-        <label for="status" class="form-label">Status:</label>
-        <select class="form-select text-white bg-black m-2" aria-label="select" name="status">
-            <option selected>Select Status</option>
-            {% for k, v in status.items %}
-            <option value="{{ k }}">{{ v }}</option>
-            {% endfor %}
-        </select>
-        <label for="tag" class="form-label">Tags:</label>
-        <select class="form-select text-white bg-black m-2" aria-label="select" name="tag" multiple>
-            {% for tag in tags %}
-            <option value="{{ tag.pk }}">{{ tag.name }}</option>
-            {% endfor %}
-        </select>
-        <button class=" btn btn-dark m-2" type="submit" value="Submit" style="width: 10rem;">Submit</button>
-    </form>
+    <h2> You can Create a Task Here:</h2>
+    <div>
+        <form class="d-flex row" id="create_task" role="create" method="POST"
+            action="{% url 'category_detail' category.pk %}">
+            {% csrf_token %}
+            <label for="title" class="form-label">Title:</label>
+            <input class="form-control me-2 text-white m-2" type="create" placeholder="Task Title" aria-label="create"
+                name="title" style="background-color: black; height: 50px;">
+            <label for="description" class="form-label">Description:</label>
+            <input class="form-control me-2 text-white m-2" type="create" placeholder="Task Description"
+                aria-label="create" name="description" style="background-color: black; height: 100px;">
+            <label for="due_date" class="form-label">Due Date:</label>
+            <input class="form-date me-2 text-black m-2" type="datetime-local" placeholder="Task Due Date"
+                aria-label="create" name="due_date" style="background-color: white; height: 50px;">
+            <label for="status" class="form-label">Status:</label>
+            <select class="form-select text-white bg-black m-2" aria-label="select" name="status">
+                <option selected>Select Status</option>
+                {% for k, v in status.items %}
+                <option value="{{ k }}">{{ v }}</option>
+                {% endfor %}
+            </select>
+            <label for="tag" class="form-label">Tags:</label>
+            <select class="form-select text-white bg-black m-2" aria-label="select" name="tag" multiple>
+                {% for tag in tags %}
+                <option value="{{ tag.pk }}">{{ tag.name }}</option>
+                {% endfor %}
+            </select>
+            <label for="file" class="form-label">File:</label>
+            <input type="file" name="file">
+            <button class=" btn btn-dark m-2" type="submit" value="Submit" style="width: 10rem;">Submit</button>
+        </form>
+    </div>
+    <br>
+    <br>
+    <h2>You can Update the Category Here:</h2>
+    <div>
+        <form class="d-flex row" id="category_update" role="create" method="POST"
+            action="{% url 'category_update' category.pk %}">
+            {% csrf_token %}
+            <label for="name2" class="form-label">Name:</label>
+            <input class="form-control me-2 text-white m-2" type="create" placeholder="{{ category.name }}"
+                aria-label="create" name="name2" style="background-color: black; height: 50px;">
+            <label for="description2" class="form-label">Description:</label>
+            <input class="form-control me-2 text-white m-2" type="create" placeholder="{{ category.description }}"
+                aria-label="create" name="description2" style="background-color: black; height: 50px;">
+            <label for="image2" class="form-label">Image:</label>
+            <input type="file" name="image2">
+            <button class="btn btn-dark m-2" type="submit" value="Submit" style="width: 10rem;">Submit</button>
+        </form>
+    </div>
 </div>
 {% endblock content %}

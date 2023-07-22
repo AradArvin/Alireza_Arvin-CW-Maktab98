@@ -38,7 +38,7 @@
                     <form class="d-flex row" role="create" method="POST" action="{% url 'update_tag' tag.pk %}">
                         {% csrf_token %}
                         <label for="name" class="form-label">Tag Name:</label>
-                        <input class="form-control me-2 text-white m-2" type="create" placeholder="{{ tag.name }}"
+                        <input class="form-control me-2 text-white m-2" type="create" value="{{ tag.name }}"
                             aria-label="create" name="name" style="background-color: black; height: 50px;">
                         <button class="btn btn-dark m-2" type="submit" value="Submit"
                             style="width: 10rem;">Submit</button>

@@ -79,10 +79,10 @@
             action="{% url 'category_update' category.pk %}">
             {% csrf_token %}
             <label for="name2" class="form-label">Name:</label>
-            <input class="form-control me-2 text-white m-2" type="create" placeholder="{{ category.name }}"
+            <input class="form-control me-2 text-white m-2" type="create" value="{{ category.name }}"
                 aria-label="create" name="name2" style="background-color: black; height: 50px;">
             <label for="description2" class="form-label">Description:</label>
-            <input class="form-control me-2 text-white m-2" type="create" placeholder="{{ category.description }}"
+            <input class="form-control me-2 text-white m-2" type="create" value="{{ category.description }}"
                 aria-label="create" name="description2" style="background-color: black; height: 50px;">
             <label for="image2" class="form-label">Image:</label>
             <input type="file" name="image2">

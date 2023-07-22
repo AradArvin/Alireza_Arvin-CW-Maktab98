@@ -46,15 +46,14 @@
                     <form class="d-flex row" role="create" method="POST" action="{% url 'task_detail' task.pk %}">
                         {% csrf_token %}
                         <label for="title" class="form-label">Title:</label>
-                        <input class="form-control me-2 text-white m-2" type="create" placeholder="{{ task.title }}"
+                        <input class="form-control me-2 text-white m-2" type="create" value="{{ task.title }}"
                             aria-label="create" name="title" style="background-color: black; height: 50px;">
                         <label for="description" class="form-label">Description:</label>
-                        <input class="form-control me-2 text-white m-2" type="create"
-                            placeholder="{{ task.description }}" aria-label="create" name="description"
-                            style="background-color: black; height: 100px;">
+                        <input class="form-control me-2 text-white m-2" type="create" value="{{ task.description }}"
+                            aria-label="create" name="description" style="background-color: black; height: 100px;">
                         <label for="due_date" class="form-label">Due Date:</label>
-                        <input class="form-date me-2 text-black m-2" type="datetime-local" placeholder="Task Due Date"
-                            aria-label="create" name="due_date" style="background-color: white; height: 50px;">
+                        <input class="form-date me-2 text-black m-2" type="datetime-local" aria-label="create"
+                            name="due_date" style="background-color: white; height: 50px;">
                         <label for="status" class="form-label">Status:</label>
                         <select class="form-select text-white bg-black m-2" aria-label="select" name="status">
                             <option selected>{{ task.status }}</option>
@@ -64,9 +63,9 @@
                         </select>
                         <label for="category" class="form-label">Category:</label>
                         <select class="form-select text-white bg-black m-2" aria-label="select" name="category">
-                            <option selected>{{ task.category.pk }}</option>
+                            <option selected>{{ task.category }}</option>
                             {% for cat in category %}
-                            <option value="{{ cat.pk }}">{{ cat.pk }} - {{ cat.name }}</option>
+                            <option value="{{ cat.pk }}">{{ forloop.counter }} - {{ cat.name }}</option>
                             {% endfor %}
                         </select>
                         <label for="tag" class="form-label">Tags:</label>

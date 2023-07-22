@@ -49,19 +49,19 @@
             <br>
             <div class="coljustify-content-center">
                 {% if tasks.has_previous %}
-                <button type="button" class="btn btn-dark m-1"><a class="text-white" href="?page=1">1st</a></button>
-                <button type="button" class="btn btn-dark m-1"><a class="text-white"
-                        href="?page={{ tasks.previous_page_number }}">Previous</a></button>
+                <a class="text-white" href="?page=1"><button type="button" class="btn btn-dark m-1">1st</button></a>
+                <a class="text-white" href="?page={{ tasks.previous_page_number }}"><button type="button"
+                        class="btn btn-dark m-1">Previous</button></a>
 
                 {% endif %}
 
                 Page {{ tasks.number }} of {{ tasks.paginator.num_pages }}
 
                 {% if tasks.has_next %}
-                <button type="button" class="btn btn-dark m-1"><a class="text-white"
-                        href="?page={{ tasks.next_page_number }}">Next</a></button>
-                <button type="button" class="btn btn-dark m-1"><a class="text-white"
-                        href="?page={{ tasks.paginator.num_pages }}">Last</a></button>
+                <a class="text-white" href="?page={{ tasks.next_page_number }}"><button type="button"
+                        class="btn btn-dark m-1">Next</button></a>
+                <a class="text-white" href="?page={{ tasks.paginator.num_pages }}"><button type="button"
+                        class="btn btn-dark m-1">Last</button></a>
                 {% endif %}
             </div>
             <br>

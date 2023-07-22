@@ -109,11 +109,33 @@ def task_detail(request, pk):
         return render(request, "tasks/task_detail.html", context)
 
 
+def search_task(request):
+    return render(request, "tasks/search_task.html")
+
+
+def search_task_result(request):
+    if request.method == "GET":
+        search = request.GET.get("searching")
+        if search:
+            tasks = Task.objects.filter(
+                Q(title__contains=search) | Q(tag__name__contains=search)
+            ).distinct()
+            return render(request, "tasks/search_task_result.html", {"tasks": tasks})
+        else:
+            return render(request, "tasks/search_task_result.html", {})
+
+
+def delete_tasks(request, pk):
+    task = Task.objects.get(pk=pk)
+    task.delete()
+    return redirect("all_tasks")
+
+
 def create_tag(request, pk):
     if request.method == "POST":
         tag = request.POST.get("name")
         Tag.objects.create(name=tag)
-        return redirect("task_detail", pk)
+        return redirect("task_detail")
 
 
 def tag_detail(request, pk):
@@ -135,22 +157,6 @@ def update_tag(request, pk):
         tag.name = name
         tag.save()
         return redirect("tag_detail", pk)
-
-
-def search_task(request):
-    return render(request, "tasks/search_task.html")
-
-
-def search_task_result(request):
-    if request.method == "GET":
-        search = request.GET.get("searching")
-        if search:
-            tasks = Task.objects.filter(
-                Q(title__contains=search) | Q(tag__name__contains=search)
-            ).distinct()
-            return render(request, "tasks/search_task_result.html", {"tasks": tasks})
-        else:
-            return render(request, "tasks/search_task_result.html", {})
 
 
 def category(request):
@@ -228,5 +234,15 @@ def category_update(request, pk):
         return redirect("category_detail", pk)
 
 
+def delete_categories(request, pk):
+    category = Category.objects.get(pk=pk)
+    category.delete()
+    return redirect("category")
+
+
 def author(request):
     return render(request, "tasks/author.html")
+
+
+def histories(request):
+    return render(request, "tasks/histories.html")

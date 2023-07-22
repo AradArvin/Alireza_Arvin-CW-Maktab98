@@ -30,6 +30,7 @@
             <tr>
                 <th scope="col" style="width: 35px;">NO.</th>
                 <th scope="col">Name</th>
+                <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -37,25 +38,59 @@
             <tr>
                 <th scope="row">{{ forloop.counter }}</th>
                 <td><a href="{% url 'category_detail' category.pk %}">{{ category.name }}</a></td>
+                <td>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#{{ category.pk }}">
+                        Delete
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="{{ category.pk }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Do you wish to delete this category?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <a href="{% url 'delete_categories' category.pk %}"><button type="button"
+                                            class="btn btn-primary">Delete</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     <br>
     <br>
-    <div class="d-flex px-4 px-lg-5 justify-content-center">
-        <form class="d-flex row" role="create" method="POST" action="{% url 'category' %}">
-            {% csrf_token %}
-            <label for="name" class="form-label">Name:</label>
-            <input class="form-control me-2 text-white m-2" type="create" placeholder="Category name"
-                aria-label="create" name="name" style="background-color: black; height: 50px;">
-            <label for="description" class="form-label">Description:</label>
-            <input class="form-control me-2 text-white m-2" type="create" placeholder="Category description"
-                aria-label="create" name="description" style="background-color: black; height: 50px;">
-            <label for="image" class="form-label">Image:</label>
-            <input type="file" name="image">
-            <button class="btn btn-dark m-2" type="submit" value="Submit" style="width: 10rem;">Submit</button>
-        </form>
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <form class="d-flex row" role="create" method="POST" action="{% url 'category' %}">
+                    {% csrf_token %}
+                    <label for="name" class="form-label">Name:</label>
+                    <input class="form-control me-2 text-white m-2" type="create" placeholder="Category name"
+                        aria-label="create" name="name" style="background-color: black; height: 50px;">
+                    <label for="description" class="form-label">Description:</label>
+                    <input class="form-control me-2 text-white m-2" type="create" placeholder="Category description"
+                        aria-label="create" name="description" style="background-color: black; height: 50px;">
+                    <label for="image" class="form-label">Image:</label>
+                    <input type="file" name="image">
+                    <button class="btn btn-dark m-2" type="submit" value="Submit" style="width: 10rem;">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock content %}

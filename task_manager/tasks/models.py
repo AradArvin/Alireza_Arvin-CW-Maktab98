@@ -1,4 +1,5 @@
 from django.db import models
+from user.models import CustomUser
 
 # Create your models here.
 
@@ -44,6 +45,10 @@ class Task(models.Model):
 
     tag = models.ManyToManyField(Tag)
     file = models.FileField(upload_to="taskfile/", blank=True, null=True)
+    user = models.OneToOneField(
+        CustomUser,
+        on_delete=models.CASCADE,
+    )
 
     def __str__(self) -> str:
         return self.title

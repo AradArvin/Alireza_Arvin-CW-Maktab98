@@ -20,9 +20,10 @@ class CreateUserForm(ModelForm):
             raise forms.ValidationError("Password confirmation failed")
 
 
-class LoginUserForm(ModelForm):
+class LoginUserForm(forms.Form):
+    username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-    class Meta:
-        model = CustomUser
-        fields = ["username", "password"]
+    # class Meta:
+    #     model = CustomUser
+    #     fields = ["username", "password"]

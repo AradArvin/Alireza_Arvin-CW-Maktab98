@@ -3,7 +3,7 @@ from django import forms
 from .models import CustomUser
 
 
-class UserForm(ModelForm):
+class CreateUserForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     confirm_password = forms.CharField(widget=forms.PasswordInput)
 
@@ -18,3 +18,11 @@ class UserForm(ModelForm):
 
         if password != confirm_password:
             raise forms.ValidationError("Password confirmation failed")
+
+
+class LoginUserForm(ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+
+    class Meta:
+        model = CustomUser
+        fields = ["username", "password"]

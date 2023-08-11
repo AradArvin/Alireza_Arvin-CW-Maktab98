@@ -5,7 +5,8 @@ from .models import CustomUser
 
 
 class CustomeEmailBack(ModelBackend):
-    def authenticate(self, request, username=None, password=None, **kwargs):
+    @classmethod
+    def authenticate(cls, request, username=None, password=None, **kwargs):
         UserModel = get_user_model()
         try:
             user = UserModel.objects.get(

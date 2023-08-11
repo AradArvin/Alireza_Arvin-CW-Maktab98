@@ -3,7 +3,7 @@ from .models import CustomUser
 
 
 
-class TodoOwnerRequiredMixin:
+class ProfileMixin:
 
     def dispatch(self, request, *args, **kwargs):
         user = CustomUser.objects.get(id=kwargs['pk'])

@@ -66,6 +66,8 @@ def all_tasks(request):
 
 
 class TaskDetail(TodoOwnerRequiredMixin, View):
+    template_name = "tasks/task_detail.html"
+    redirect_to = "task_detail"
 
     def get(self, request, *args, **kwargs):
         task = Task.objects.get(pk=kwargs['pk'])
@@ -77,7 +79,7 @@ class TaskDetail(TodoOwnerRequiredMixin, View):
             "tags": tags,
             "status": dict(Task.STATUS_LIST),
         }
-        return render(request, "tasks/task_detail.html", context)
+        return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         task = Task.objects.get(pk=kwargs['pk'])
@@ -109,7 +111,7 @@ class TaskDetail(TodoOwnerRequiredMixin, View):
             if tag_list != []:
                 task.tag.set(tag_list)
             task.save()
-            return redirect("task_detail", kwargs['pk'])
+            return redirect(self.redirect_to, kwargs['pk'])
             
 
 

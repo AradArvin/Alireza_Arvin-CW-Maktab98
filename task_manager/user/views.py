@@ -49,15 +49,18 @@ def logging(request):
 class ProfileView(ProfileMixin, View):
     template_name = "user/profile.html"
     form_class = CreateUserForm
-
+    redirect_to = "profile_detail"
     def get(self, request, *args, **kwargs):
-        pass
+        user = CustomUser.objects.get(pk=kwargs['pk'])
+        form = self.form_class()
+        context = {"user":user, "form":form}
+        return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         user = CustomUser.objects.get(pk=kwargs['pk'])
         form = self.form_class(request.POST, instance=user)
         if form.is_valid():
             user.save()
-            return redirect("profile_detail")
+            return redirect(self.redirect_to)
         context = {"user":user}
         return render(request, self.template_name, context)

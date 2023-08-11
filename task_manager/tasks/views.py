@@ -5,6 +5,7 @@ from .models import Task, Category, Tag
 from django.db.models import Q
 from django.core.paginator import Paginator
 from .mixins import TodoOwnerRequiredMixin
+from django.views import View
 # Create your views here.
 
 
@@ -64,7 +65,7 @@ def all_tasks(request):
         return render(request, "tasks/all_tasks.html", context)
 
 
-class TaskDetail(TodoOwnerRequiredMixin):
+class TaskDetail(TodoOwnerRequiredMixin, View):
 
     def get(self, request, *args, **kwargs):
         task = Task.objects.get(pk=kwargs['pk'])

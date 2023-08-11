@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import CreateUserForm, LoginUserForm
 from .auth import CustomeEmailBack
-
+from django.views import View
+from .mixins import ProfileMixin
+from .models import CustomUser
 # Create your views here.
 
 
@@ -42,3 +44,20 @@ def logging(request):
         form = LoginUserForm()
         context = {"form": form}
         return render(request, "user/login.html", context)
+
+
+class ProfileView(ProfileMixin, View):
+    template_name = "user/profile.html"
+    form_class = CreateUserForm
+
+    def get(self, request, *args, **kwargs):
+        pass
+
+    def post(self, request, *args, **kwargs):
+        user = CustomUser.objects.get(pk=kwargs['pk'])
+        form = self.form_class(request.POST, instance=user)
+        if form.is_valid():
+            user.save()
+            return redirect("profile_detail")
+        context = {"user":user}
+        return render(request, self.template_name, context)

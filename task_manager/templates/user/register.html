@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
 
 
 {% block title%}
 <title>Register</title>
-{%endblock title%}
+{% endblock title %}
 {% load crispy_forms_tags %}
 {% block header %}
-{% load static %}
 <style>
     #imageimport {
         background-image: url("{% static 'assets/img/home-bg.jpg' %}");

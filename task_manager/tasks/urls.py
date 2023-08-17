@@ -5,7 +5,7 @@ from .views import *
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
     path("author/", author, name="author"),
-    path("task/", all_tasks, name="all_tasks"),
+    path("task/", AllTasksView.as_view(), name="all_tasks"),
     path("task/<int:pk>/", TaskDetail.as_view(), name="task_detail"),
     path("search/", search_task, name="search_task"),
     path("search_result/", search_task_result, name="search_task_result"),

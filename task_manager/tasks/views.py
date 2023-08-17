@@ -14,8 +14,8 @@ class HomeView(ListView):
     model = Task
     template_name = "tasks/home.html"
     
-    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
-        context =  super().get_context_data(**kwargs)
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]: # research get query set method.
+        context = super().get_context_data(**kwargs)
         task_list = Task.objects.filter(Q(status__contains="Ongoing"))
         pagination = Paginator(task_list, 4)
         page = self.request.GET.get("page")
@@ -30,21 +30,38 @@ class HomeView(ListView):
 #     context = {"tasks": tasks}
 #     return render(request, "tasks/home.html", context)
 
+class AllTasksView(ListView):
+    model = Task
+    template_name = "tasks/all_tasks.html"
 
-def all_tasks(request):
-    if request.method == "POST":
-        title = request.POST.get("title")
-        description = request.POST.get("description")
-        due_date = request.POST.get("due_date")
-        status = request.POST.get("status")
-        category_id = request.POST.get("category")
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        task_list = Task.objects.all().order_by("due_date")
+        pagination = Paginator(task_list, 10)
+        page = self.request.GET.get("page")
+        tasks = pagination.get_page(page)
+        category = Category.objects.all()
+        tags = Tag.objects.all()
+        context["tasks"] = tasks
+        context["category"] = category
+        context["tags"] = tags
+        context["status"] = dict(Task.STATUS_LIST)
+        return context
+    
+
+    def post(self, **kwargs):
+        title = self.request.POST.get("title")
+        description = self.request.POST.get("description")
+        due_date = self.request.POST.get("due_date")
+        status = self.request.POST.get("status")
+        category_id = self.request.POST.get("category")
         category = Category.objects.get(pk=category_id)
-        tag_s = request.POST.get("tag")
+        tag_s = self.request.POST.get("tag")
         tag_list = []
         for tag in tag_s:
             tag_list.append(Tag.objects.get(pk=tag))
-        if request.POST.get("file"):
-            file = request.POST.get("file")
+        if self.request.POST.get("file"):
+            file = self.request.POST.get("file")
             Task.objects.create(
                 title=title,
                 description=description,
@@ -62,20 +79,52 @@ def all_tasks(request):
             category=category,
         ).tag.set(tag_list)
         return redirect("all_tasks")
-    else:
-        task_list = Task.objects.all().order_by("due_date")
-        pagination = Paginator(task_list, 10)
-        page = request.GET.get("page")
-        tasks = pagination.get_page(page)
-        category = Category.objects.all()
-        tags = Tag.objects.all()
-        context = {
-            "tasks": tasks,
-            "category": category,
-            "tags": tags,
-            "status": dict(Task.STATUS_LIST),
-        }
-        return render(request, "tasks/all_tasks.html", context)
+
+# def all_tasks(request):
+#     if request.method == "POST":
+#         title = request.POST.get("title")
+#         description = request.POST.get("description")
+#         due_date = request.POST.get("due_date")
+#         status = request.POST.get("status")
+#         category_id = request.POST.get("category")
+#         category = Category.objects.get(pk=category_id)
+#         tag_s = request.POST.get("tag")
+#         tag_list = []
+#         for tag in tag_s:
+#             tag_list.append(Tag.objects.get(pk=tag))
+#         if request.POST.get("file"):
+#             file = request.POST.get("file")
+#             Task.objects.create(
+#                 title=title,
+#                 description=description,
+#                 due_date=due_date,
+#                 status=status,
+#                 category=category,
+#                 file=file,
+#             ).tag.set(tag_list)
+#             return redirect("all_tasks")
+#         Task.objects.create(
+#             title=title,
+#             description=description,
+#             due_date=due_date,
+#             status=status,
+#             category=category,
+#         ).tag.set(tag_list)
+#         return redirect("all_tasks")
+#     else:
+#         task_list = Task.objects.all().order_by("due_date")
+#         pagination = Paginator(task_list, 10)
+#         page = request.GET.get("page")
+#         tasks = pagination.get_page(page)
+#         category = Category.objects.all()
+#         tags = Tag.objects.all()
+#         context = {
+#             "tasks": tasks,
+#             "category": category,
+#             "tags": tags,
+#             "status": dict(Task.STATUS_LIST),
+#         }
+#         return render(request, "tasks/all_tasks.html", context)
 
 
 class TaskDetail(TodoOwnerRequiredMixin, View):

@@ -209,7 +209,7 @@ class SearchResultView(ListView):
 
 class DeleteTaskView(DeleteView):
     model = Task
-    success_url = "all_tasks"
+    success_url = "tasks/all_tasks.html"
 
 # def delete_tasks(request, pk):
 #     task = Task.objects.get(pk=pk)
@@ -218,7 +218,7 @@ class DeleteTaskView(DeleteView):
 
 class CreateTagView(CreateView):
     model = Tag
-    success_url = "task_detail"
+    success_url = "tasks/task_detail.html"
 
 # def create_tag(request, pk):
 #     if request.method == "POST":
@@ -247,7 +247,7 @@ class AllTagsView(ListView):
 
 class UpdateTagView(UpdateView):
     model = Tag
-    success_url = "tag_detail"
+    success_url = "tasks/tag_detail.html"
 
 # def update_tag(request, pk):
 #     tag = Tag.objects.get(pk=pk)

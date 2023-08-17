@@ -216,12 +216,15 @@ class DeleteTaskView(DeleteView):
 #     task.delete()
 #     return redirect("all_tasks")
 
+class CreateTagView(CreateView):
+    model = Tag
+    success_url = "task_detail"
 
-def create_tag(request, pk):
-    if request.method == "POST":
-        tag = request.POST.get("name")
-        Tag.objects.create(name=tag)
-        return redirect("task_detail")
+# def create_tag(request, pk):
+#     if request.method == "POST":
+#         tag = request.POST.get("name")
+#         Tag.objects.create(name=tag)
+#         return redirect("task_detail", pk)
 
 
 def tag_detail(request, pk):

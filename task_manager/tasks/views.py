@@ -7,7 +7,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from .mixins import TodoOwnerRequiredMixin
 from django.views import View
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, FormView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, FormView, DeleteView
 # Create your views here.
 
 class HomeView(ListView):
@@ -207,11 +207,14 @@ class SearchResultView(ListView):
 #         else:
 #             return render(request, "tasks/search_task_result.html", {})
 
+class DeleteTaskView(DeleteView):
+    model = Task
+    success_url = "all_tasks"
 
-def delete_tasks(request, pk):
-    task = Task.objects.get(pk=pk)
-    task.delete()
-    return redirect("all_tasks")
+# def delete_tasks(request, pk):
+#     task = Task.objects.get(pk=pk)
+#     task.delete()
+#     return redirect("all_tasks")
 
 
 def create_tag(request, pk):

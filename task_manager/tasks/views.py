@@ -226,11 +226,15 @@ class CreateTagView(CreateView):
 #         Tag.objects.create(name=tag)
 #         return redirect("task_detail", pk)
 
+class TagDetailView(DetailView):
+    model = Tag
+    template_name = "tasks/tag_detail.html"
 
-def tag_detail(request, pk):
-    tag = Tag.objects.get(pk=pk)
-    context = {"tag": tag}
-    return render(request, "tasks/tag_detail.html", context)
+
+# def tag_detail(request, pk):
+#     tag = Tag.objects.get(pk=pk)
+#     context = {"tag": tag}
+#     return render(request, "tasks/tag_detail.html", context)
 
 
 def all_tags(request):

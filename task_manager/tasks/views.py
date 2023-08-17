@@ -33,6 +33,7 @@ class HomeView(ListView):
 class AllTasksView(ListView):
     model = Task
     template_name = "tasks/all_tasks.html"
+    redirect_to = "all_tasks"
 
     def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
         context = super().get_context_data(**kwargs)
@@ -70,7 +71,7 @@ class AllTasksView(ListView):
                 category=category,
                 file=file,
             ).tag.set(tag_list)
-            return redirect("all_tasks")
+            return redirect(self.redirect_to)
         Task.objects.create(
             title=title,
             description=description,
@@ -78,7 +79,7 @@ class AllTasksView(ListView):
             status=status,
             category=category,
         ).tag.set(tag_list)
-        return redirect("all_tasks")
+        return redirect(self.redirect_to)
 
 # def all_tasks(request):
 #     if request.method == "POST":
@@ -127,38 +128,37 @@ class AllTasksView(ListView):
 #         return render(request, "tasks/all_tasks.html", context)
 
 
-class TaskDetail(TodoOwnerRequiredMixin, View):
+class TaskDetail(TodoOwnerRequiredMixin,DetailView):
+    model = Task
     template_name = "tasks/task_detail.html"
     redirect_to = "task_detail"
 
-    def get(self, request, *args, **kwargs):
-        task = Task.objects.get(pk=kwargs['pk'])
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context = super().get_context_data(**kwargs)
         category = Category.objects.all()
         tags = Tag.objects.all()
-        context = {
-            "task": task,
-            "category": category,
-            "tags": tags,
-            "status": dict(Task.STATUS_LIST),
-        }
-        return render(request, self.template_name, context)
+        context["category"] = category
+        context["tags"] = tags
+        context["status"] = dict(Task.STATUS_LIST)
+        return context
 
-    def post(self, request, *args, **kwargs):
+
+    def post(self, *args, **kwargs):
         task = Task.objects.get(pk=kwargs['pk'])
-        if request.method == "POST":
-            title = request.POST.get("title")
-            description = request.POST.get("description")
-            due_date = request.POST.get("due_date")
-            status = request.POST.get("status")
-            category_id = request.POST.get("category")
+        if self.request.method == "POST":
+            title = self.request.POST.get("title")
+            description = self.request.POST.get("description")
+            due_date = self.request.POST.get("due_date")
+            status = self.request.POST.get("status")
+            category_id = self.request.POST.get("category")
             category = Category.objects.get(pk=category_id)
-            tag_s = request.POST.get("tag")
+            tag_s = self.request.POST.get("tag")
             tag_list = []
             if tag_s:
                 for tag in tag_s:
                     tag_list.append(Tag.objects.get(pk=tag))
-            if request.POST.get("file"):
-                file = request.POST.get("file")
+            if self.request.POST.get("file"):
+                file = self.request.POST.get("file")
                 task.file = file
             if title:
                 task.title = title

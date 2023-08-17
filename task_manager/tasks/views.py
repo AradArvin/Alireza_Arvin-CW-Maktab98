@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from .mixins import TodoOwnerRequiredMixin
 from django.views import View
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, FormView
 # Create your views here.
 
 

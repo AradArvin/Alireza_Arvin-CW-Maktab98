@@ -236,11 +236,14 @@ class TagDetailView(DetailView):
 #     context = {"tag": tag}
 #     return render(request, "tasks/tag_detail.html", context)
 
+class AllTagsView(ListView):
+    model = Tag
+    template_name = "tasks/all_tags.html"
 
-def all_tags(request):
-    tags = Tag.objects.all()
-    context = {"tags": tags}
-    return render(request, "tasks/all_tags.html", context)
+# def all_tags(request):
+#     tags = Tag.objects.all()
+#     context = {"tags": tags}
+#     return render(request, "tasks/all_tags.html", context)
 
 
 def update_tag(request, pk):

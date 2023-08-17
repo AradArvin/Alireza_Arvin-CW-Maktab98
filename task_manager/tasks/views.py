@@ -180,17 +180,32 @@ class TaskDetail(TodoOwnerRequiredMixin,DetailView):
 def search_task(request):
     return render(request, "tasks/search_task.html")
 
+class SearchResultView(ListView):
+    model = Task
+    template_name = "tasks/search_task_result.html"
 
-def search_task_result(request):
-    if request.method == "GET":
-        search = request.GET.get("searching")
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context =  super().get_context_data(**kwargs)
+        search = self.request.GET.get("searching")
         if search:
             tasks = Task.objects.filter(
                 Q(title__contains=search) | Q(tag__name__contains=search)
             ).distinct()
-            return render(request, "tasks/search_task_result.html", {"tasks": tasks})
+            context["tasks"] = tasks
         else:
-            return render(request, "tasks/search_task_result.html", {})
+            context["tasks"] = ""
+        return context
+
+# def search_task_result(request):
+#     if request.method == "GET":
+#         search = request.GET.get("searching")
+#         if search:
+#             tasks = Task.objects.filter(
+#                 Q(title__contains=search) | Q(tag__name__contains=search)
+#             ).distinct()
+#             return render(request, "tasks/search_task_result.html", {"tasks": tasks})
+#         else:
+#             return render(request, "tasks/search_task_result.html", {})
 
 
 def delete_tasks(request, pk):

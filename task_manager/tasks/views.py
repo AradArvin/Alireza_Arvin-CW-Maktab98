@@ -245,14 +245,17 @@ class AllTagsView(ListView):
 #     context = {"tags": tags}
 #     return render(request, "tasks/all_tags.html", context)
 
+class UpdateTagView(UpdateView):
+    model = Tag
+    success_url = "tag_detail"
 
-def update_tag(request, pk):
-    tag = Tag.objects.get(pk=pk)
-    if request.method == "POST":
-        name = request.POST.get("name")
-        tag.name = name
-        tag.save()
-        return redirect("tag_detail", pk)
+# def update_tag(request, pk):
+#     tag = Tag.objects.get(pk=pk)
+#     if request.method == "POST":
+#         name = request.POST.get("name")
+#         tag.name = name
+#         tag.save()
+#         return redirect("tag_detail", pk)
 
 
 def category(request):

@@ -17,6 +17,6 @@ urlpatterns = [
     path("ctag/<int:pk>/", CreateTagView.as_view(), name="create_tag"),
     path("tag/<int:pk>/", TagDetailView.as_view(), name="tag_detail"),
     path("tag/", AllTagsView.as_view(), name="all_tags"),
-    path("utag/<int:pk>/", update_tag, name="update_tag"),
+    path("utag/<int:pk>/", UpdateTagView.as_view(), name="update_tag"),
     path("History/", histories, name="Histories"),
 ]

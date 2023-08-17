@@ -1,3 +1,4 @@
+from typing import Any, Dict
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.urls import path
@@ -9,14 +10,25 @@ from django.views import View
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, FormView
 # Create your views here.
 
-
-def home(request):
-    task_list = Task.objects.filter(Q(status__contains="Ongoing"))
-    pagination = Paginator(task_list, 4)
-    page = request.GET.get("page")
-    tasks = pagination.get_page(page)
-    context = {"tasks": tasks}
-    return render(request, "tasks/home.html", context)
+class HomeView(ListView):
+    model = Task
+    template_name = "tasks/home.html"
+    
+    def get_context_data(self, **kwargs: Any) -> Dict[str, Any]:
+        context =  super().get_context_data(**kwargs)
+        task_list = Task.objects.filter(Q(status__contains="Ongoing"))
+        pagination = Paginator(task_list, 4)
+        page = self.request.GET.get("page")
+        tasks = pagination.get_page(page)
+        context["tasks"] = tasks
+        return context
+# def home(request):
+#     task_list = Task.objects.filter(Q(status__contains="Ongoing"))
+#     pagination = Paginator(task_list, 4)
+#     page = request.GET.get("page")
+#     tasks = pagination.get_page(page)
+#     context = {"tasks": tasks}
+#     return render(request, "tasks/home.html", context)
 
 
 def all_tasks(request):

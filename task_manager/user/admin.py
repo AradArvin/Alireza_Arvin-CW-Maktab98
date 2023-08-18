@@ -5,6 +5,7 @@ from django.http.request import HttpRequest
 from .models import CustomUser
 from tasks.models import Task
 from django.db.models import Count
+
 # Register your models here.
 
 
@@ -37,10 +38,12 @@ class CustomUserAdmin(admin.ModelAdmin):
         num = obj.number_of_tasks
         return num
     
+    
     list_display = ("username", "email","number_of_tasks")
     number_of_tasks.admin_order_field = "number_of_tasks"
     list_filter = (GreatFilter,)
     list_per_page = 10
+    readonly_fields = ['image_tag']
     
 # num = Task.objects.filter(user=obj).count()
 

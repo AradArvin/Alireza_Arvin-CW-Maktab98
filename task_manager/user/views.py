@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import CreateUserForm, LoginUserForm
-from .auth import CustomeEmailBack
+# from .auth import CustomeEmailBack
 from django.views import View
 from .mixins import ProfileMixin
-from .models import CustomUser
+# from .models import CustomUser
+from django.contrib.auth import authenticate
 # Create your views here.
 
 
@@ -31,6 +32,8 @@ def logging(request):
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
+            print(username)
+            print(password)
             auth = authenticate(request=request, username=username, password=password)
             print(auth)
             if auth is not None:
@@ -49,15 +52,16 @@ def logging(request):
 class ProfileView(ProfileMixin, View):
     template_name = "user/profile.html"
     form_class = CreateUserForm
-    redirect_to = "profile_detail"
+    redirect_to = "profile"
+
     def get(self, request, *args, **kwargs):
-        user = CustomUser.objects.get(pk=kwargs['pk'])
+        user = request.user
         form = self.form_class()
         context = {"user":user, "form":form}
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        user = CustomUser.objects.get(pk=kwargs['pk'])
+        user = request.user
         form = self.form_class(request.POST, instance=user)
         if form.is_valid():
             user.save()

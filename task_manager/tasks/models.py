@@ -45,7 +45,7 @@ class Task(models.Model):
 
     tag = models.ManyToManyField(Tag)
     file = models.FileField(upload_to="taskfile/", blank=True, null=True)
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
     )
